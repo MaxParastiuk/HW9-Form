@@ -1,11 +1,19 @@
-document.getElementById('task').focus();
-
 let input = document.getElementById('task');
+let form = document.getElementById('form');
+let ul = document.getElementById('list');
 
 function checkValid() {
     let myRe = /^[a-z0-9]{2,15}$/i
     let inputVal = input.value;
     return myRe.test(inputVal);
+}
+
+function create() {
+    let ul = document.getElementById('list');
+    let list = ul.innerHTML;
+    let task = document.getElementById('task').value;
+    list += `<li class="task-to-do">${task}<button>Delete</button></li>`
+    ul.innerHTML = list;
 }
 
 input.addEventListener('change', function () {
@@ -16,30 +24,17 @@ input.addEventListener('change', function () {
         input.classList.remove("inputСorrect")
         input.classList.add("inputError")
     }
-})
+});
 
-let btn = document.getElementById('add')
-btn.addEventListener('click', function (event) {
-    create(event);
-
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (checkValid()) {
+        create();
+    }
     let refresh = document.getElementById('task');
     refresh.value = '';
 });
 
-function create(event) {
-
-    if (checkValid()) {
-        let ul = document.getElementById('list');
-        let list = ul.innerHTML;
-        let task = document.getElementById('task').value;
-        list += `<li class="task-to-do">${task}<button>Delete</button></li>`
-        ul.innerHTML = list;
-    } else {
-        event.preventDefault();
-    }
-}
-
-let ul = document.getElementById('list');
 ul.addEventListener('click', (event) => {
     if (event.target.tagName === 'LI') {
         event.target.classList.toggle('done');
