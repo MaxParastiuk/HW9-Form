@@ -1,0 +1,22 @@
+
+.task-to-do {
+    background-color: yellow;
+}
+.done {
+    background-color: green;
+}
+
+li {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.inputСorrect {
+    border: lawngreen solid 2px;
+    color: lawngreen;
+}
+.inputError {
+    border: red solid 2px;
+    color: red;
+}
